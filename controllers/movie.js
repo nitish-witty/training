@@ -8,7 +8,7 @@ const client = require("../connection");
 //   { id: 44, movieName: "Hulk", genre: "action", rating: 3, liked: "false" },
 //   { id: 55, movieName: "Thor", genre: "adventure", rating: 5, liked: "true" }
 // ];
-const getMovies = async (req, res) => {
+const getMovies = async (req, res, next) => {
   try {
     let movie = (
       await client.query(
@@ -29,7 +29,7 @@ const getMovies = async (req, res) => {
   }
 };
 
-const addMovie = async (req, res) => {
+const addMovie = async (req, res, next) => {
   try {
     let { movieName, rating, launchedAt, duration } = req.body;
 
@@ -66,7 +66,7 @@ const addMovie = async (req, res) => {
   }
 };
 
-const updateMovie = async (req, res) => {
+const updateMovie = async (req, res, next) => {
   try {
     let { active, name, launchedAt, duration } = req.body;
 
@@ -127,7 +127,7 @@ const updateMovie = async (req, res) => {
   }
 };
 
-const deleteMovie = (req, res) => {
+const deleteMovie = (req, res, next) => {
   try {
     let id = req.body.id;
     if (id == null || id == "" || id == undefined) {

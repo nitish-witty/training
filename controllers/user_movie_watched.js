@@ -1,7 +1,7 @@
 let user_movie_watched = require("router")();
 const client = require("../connection");
 
-const getUserMovie = async (req, res) => {
+const getUserMovie = async (req, res, next) => {
   try {
     let user_movie_watched = (
       await client.query(
@@ -22,7 +22,7 @@ const getUserMovie = async (req, res) => {
   }
 };
 
-const addUserMovie = async (req, res) => {
+const addUserMovie = async (req, res, next) => {
   try {
     let {
       userId,

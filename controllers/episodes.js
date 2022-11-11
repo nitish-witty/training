@@ -1,7 +1,7 @@
 let episodes = require("router")();
 const client = require("../connection");
 
-const getEpisodes = async (req, res) => {
+const getEpisodes = async (req, res, next) => {
   try {
     let episodes = (
       await client.query(
@@ -22,7 +22,7 @@ const getEpisodes = async (req, res) => {
   }
 };
 
-const addEpisodes = async (req, res) => {
+const addEpisodes = async (req, res, next) => {
   try {
     let { episodeName, rating, duration, launchedAt } = req.body;
 

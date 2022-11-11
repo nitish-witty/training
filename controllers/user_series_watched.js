@@ -1,7 +1,7 @@
 let user_series_watched = require("router")();
 const client = require("../connection");
 
-const getUserSeries = async (req, res) => {
+const getUserSeries = async (req, res, next) => {
   try {
     let user_series_watched = (
       await client.query(
@@ -22,7 +22,7 @@ const getUserSeries = async (req, res) => {
   }
 };
 
-const addUserSeries = async (req, res) => {
+const addUserSeries = async (req, res, next) => {
   try {
     let {
       userId,
