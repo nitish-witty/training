@@ -1,4 +1,4 @@
-const { Client } = require("node-postgres");
+const { Client } = require("pg");
 const dbConfig = require("./config/default.json");
 
 const client = new Client({

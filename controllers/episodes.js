@@ -1,11 +1,11 @@
 let episodes = require("router")();
 const client = require("../connection");
 
-episodes.get("/episodes", async (req, res) => {
+const getEpisodes = async (req, res) => {
   try {
     let episodes = (
       await client.query(
-        'SELECT name, active, duration, launched_at FROM app."episodes"'
+        'SELECT id, name, active, duration, launched_at FROM app."episodes" order by id'
       )
     ).rows;
 
@@ -20,9 +20,9 @@ episodes.get("/episodes", async (req, res) => {
     console.log(error);
     return res.status(500).json({ message: error });
   }
-});
+};
 
-episodes.post("/episodes", async (req, res) => {
+const addEpisodes = async (req, res) => {
   try {
     let { episodeName, rating, duration, launchedAt } = req.body;
 
@@ -33,7 +33,7 @@ episodes.post("/episodes", async (req, res) => {
       throw "add episodeName";
     }
     if (!rating) {
-        throw "add rating";
+      throw "add rating";
     }
     if (!duration) {
       throw "add duration";
@@ -57,6 +57,6 @@ episodes.post("/episodes", async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error });
   }
-});
+};
 
-module.exports = episodes;
+module.exports = { getEpisodes, addEpisodes };

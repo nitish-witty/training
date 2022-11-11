@@ -8,11 +8,11 @@ const client = require("../connection");
 //   { id: 44, movieName: "Hulk", genre: "action", rating: 3, liked: "false" },
 //   { id: 55, movieName: "Thor", genre: "adventure", rating: 5, liked: "true" }
 // ];
-movie.get("/movie", async (req, res) => {
+const getMovies = async (req, res) => {
   try {
     let movie = (
       await client.query(
-        'SELECT name, active, launched_at, duration FROM app."movie"'
+        'SELECT id, name, active, launched_at, duration FROM app."movie" order by id'
       )
     ).rows;
 
@@ -27,9 +27,9 @@ movie.get("/movie", async (req, res) => {
     console.log(error);
     return res.status(500).json({ message: error });
   }
-});
+};
 
-movie.post("/movie", async (req, res) => {
+const addMovie = async (req, res) => {
   try {
     let { movieName, rating, launchedAt, duration } = req.body;
 
@@ -64,9 +64,9 @@ movie.post("/movie", async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error });
   }
-});
+};
 
-movie.put("/movie", async (req, res) => {
+const updateMovie = async (req, res) => {
   try {
     let { active, name, launchedAt, duration } = req.body;
 
@@ -125,9 +125,9 @@ movie.put("/movie", async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error });
   }
-});
+};
 
-movie.delete("/movie", (req, res) => {
+const deleteMovie = (req, res) => {
   try {
     let id = req.body.id;
     if (id == null || id == "" || id == undefined) {
@@ -139,6 +139,6 @@ movie.delete("/movie", (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error });
   }
-});
+};
 
-module.exports = movie;
+module.exports = { addMovie, getMovies, updateMovie, deleteMovie };

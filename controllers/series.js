@@ -1,11 +1,11 @@
 let series = require("router")();
 const client = require("../connection");
 
-series.get("/series", async (req, res) => {
+const getSeries = async (req, res) => {
   try {
     let series = (
       await client.query(
-        'SELECT name, episodes, active, launched_at FROM app."series"'
+        'SELECT id, name, episodes, active, launched_at FROM app."series" order by id'
       )
     ).rows;
 
@@ -20,9 +20,9 @@ series.get("/series", async (req, res) => {
     console.log(error);
     return res.status(500).json({ message: error });
   }
-});
+};
 
-series.post("/series", async (req, res) => {
+const addSeries = async (req, res) => {
   try {
     let { seriesName, rating, launchedAt, episodes } = req.body;
 
@@ -46,7 +46,7 @@ series.post("/series", async (req, res) => {
     }
 
     const newSeries =
-      await client.query(`INSERT INTO app."series"(name, rating, active, launched_at, episodes)
+      await client.query(`INSERT INTO app."series"(id, name, rating, active, launched_at, episodes)
     VALUES (${
       count + 1
     }, '${seriesName}', ${rating}, true, '${launchedAt}' , '${episodes}')`);
@@ -57,6 +57,6 @@ series.post("/series", async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: error });
   }
-});
+};
 
-module.exports = series;
+module.exports = { getSeries, addSeries };
