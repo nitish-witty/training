@@ -6,8 +6,7 @@ const episodes = require("./episodes");
 const user_episode_watched = require("./user_episode_watched");
 const user_movie_watched = require("./user_movie_watched");
 const user_series_watched = require("./user_series_watched");
-
-
+const user = require("./user");
 
 // route.get("/ping", function (request, response) {
 //     response.writeHead(200);
@@ -21,7 +20,7 @@ route.use("/episodes", episodes);
 route.use("/user_episode_watched", user_episode_watched);
 route.use("/user_movie_watched", user_movie_watched);
 route.use("/user_series_watched", user_series_watched);
-
+route.use("/user", user);
 // route.use("/auth", auth);
 
 module.exports = route;
