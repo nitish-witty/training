@@ -6,5 +6,9 @@
       "password": "root",
       "port": 5432
     },
-    "port":3000
+    "port":3000,
+    "app": {
+      "secretKey": "mynameisnitishanand",
+      "jwtTokenExpire": 180
+        }
 }

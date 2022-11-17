@@ -1,17 +1,34 @@
 const jwt = require("jsonwebtoken");
+const dbConfig = require("../config/default.json");
 
-const createToken = () => {
+const createToken = ({ id, email }) => {
   return jwt.sign(
     {
-      name: "nitish"
+      userId: id,
+      email: email
     },
-    "mynameisnitishanand",
-    { expiresIn: "1h" }
+    dbConfig.app.secretKey,
+    { expiresIn: dbConfig.app.jwtTokenExpire }
   );
 };
 
 const verifyToken = (token) => {
-  return jwt.verify(token, "mynameisnitishanand");
+  return jwt.verify(token, dbConfig.app.secretKey);
 };
 
-module.exports = { createToken, verifyToken };
+const getToken = (req) => {
+  try {
+    console.log("header: ", req.headers);
+    let headers = req.headers["x-access-token"] || req.headers["authorization"];
+    if (headers && headers.startsWith("Bearer ")) {
+      let token = headers.slice(7);
+      return token;
+    } else {
+      throw "Invalid token";
+    }
+  } catch (error) {
+    throw "Invalid token";
+  }
+};
+
+module.exports = { createToken, verifyToken, getToken };
