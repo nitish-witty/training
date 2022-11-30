@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const UserSeriesWatched = sequelize.define(
-    "UserSeriesWatched",
+  const UserMovieWatched = sequelize.define(
+    "UserMovieWatched",
     {
       id: {
         type: DataTypes.BIGINT,
@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         field: "user_id",
         allowNull: false
       },
-      seriesId: {
+      movieId: {
         type: DataTypes.BIGINT,
-        field: "series_id",
+        field: "movie_id",
         allowNull: false
       },
       liked: {
@@ -42,13 +42,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       schema: "app",
-      tableName: "user_series_watched",
+      tableName: "user_movie_watched",
       timestamps: false
     }
   );
 
-  UserSeriesWatched.associate = function (model) {
-    const { UserSeriesWatched } = model;
-    return UserSeriesWatched;
+  UserMovieWatched.associate = function (model) {
+    const { UserMovieWatched } = model;
+    return UserMovieWatched;
   };
 };
