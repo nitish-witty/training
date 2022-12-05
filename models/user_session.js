@@ -34,6 +34,13 @@ module.exports = (sequelize, DataTypes) => {
 
   UserSession.associate = function (model) {
     const { UserSession } = model;
+
+    UserSession.belongsTo(User, {
+      as: "User",
+      foreignKey: "user_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
     return UserSession;
   };
 };

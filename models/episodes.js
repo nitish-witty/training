@@ -27,6 +27,12 @@ module.exports = (sequelize, DataTypes) => {
       seriesId: {
         type: DataTypes.BIGINT,
         field: "series_id",
+        references: {
+          model: "Series",
+          key: "id"
+        },
+        onDelete: "NO ACTION",
+        onUpdate: "NO ACTION",
         allowNull: false
       },
       launchedAt: {
@@ -46,7 +52,22 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Episodes.associate = function (model) {
-    const { Episodes } = model;
+    const { Episodes, Series } = model;
+
+    Episodes.belongsTo(Series, {
+      as: "Series",
+      foreignKey: "series_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
+
+    Episodes.hasone(UserEpisodeWatched, {
+      as: "UserEpisodeWatched",
+      foreignKey: "episode_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
+
     return Episodes;
   };
 };

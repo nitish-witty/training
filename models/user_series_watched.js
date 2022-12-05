@@ -49,6 +49,20 @@ module.exports = (sequelize, DataTypes) => {
 
   UserSeriesWatched.associate = function (model) {
     const { UserSeriesWatched } = model;
+
+    UserSeriesWatched.belongsTo(Series, {
+      as: "Series",
+      foreignKey: "series_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
+
+    UserSeriesWatched.belongsTo(User, {
+      as: "User",
+      foreignKey: "user_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
     return UserSeriesWatched;
   };
 };

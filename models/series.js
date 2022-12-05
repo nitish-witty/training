@@ -43,7 +43,21 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Series.associate = function (model) {
-    const { Series } = model;
+    const { Series, Episodes } = model;
+
+    Series.hasMany(Episodes, {
+      as: "Episodes",
+      foreignKey: "series_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
+
+    Series.hasone(UserSeriesWatched, {
+      as: "UserSeriesWatched",
+      foreignKey: "Series_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
     return Series;
   };
 };

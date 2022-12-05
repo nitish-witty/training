@@ -38,6 +38,34 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (model) {
     const { User } = model;
+
+    User.hasone(UserSession, {
+      as: "UserSession",
+      foreignKey: "user_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
+
+    User.hasone(UserEpisodeWatched, {
+      as: "UserEpisodeWatched",
+      foreignKey: "user_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
+
+    User.hasone(UserSeriesWatched, {
+      as: "UserSeriesWatched",
+      foreignKey: "user_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
+
+    User.hasone(UserMovieWatched, {
+      as: "UserMovieWatched",
+      foreignKey: "user_id",
+      onDelete: "NO ACTION",
+      onUpdate: "NO ACTION"
+    });
     return User;
   };
 };
