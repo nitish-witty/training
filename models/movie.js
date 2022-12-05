@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Movie.hasone(UserMovieWatched, {
       as: "UserMovieWatched",
-      foreignKey: "episode_id",
+      foreignKey: "movie_id",
       onDelete: "NO ACTION",
       onUpdate: "NO ACTION"
     });

@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
 
     UserMovieWatched.belongsTo(Movie, {
       as: "Movie",
-      foreignKey: "",
+      foreignKey: "movie_id",
       onDelete: "NO ACTION",
       onUpdate: "NO ACTION"
     });
