@@ -12,12 +12,24 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.BIGINT,
         field: "user_id",
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "User",
+          key: "id"
+        },
+        onDelete: "NO ACTION",
+        onUpdate: "NO ACTION"
       },
       seriesId: {
         type: DataTypes.BIGINT,
         field: "series_id",
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "Series",
+          key: "id"
+        },
+        onDelete: "NO ACTION",
+        onUpdate: "NO ACTION"
       },
       liked: {
         type: DataTypes.BOOLEAN,

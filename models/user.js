@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         field: "name",
         allowNull: false
       },
-      emailId: {
+      email: {
         type: DataTypes.TEXT,
-        field: "email_id",
+        field: "email",
         allowNull: false
       },
       password: {

@@ -4,6 +4,9 @@ const path = require("path");
 const basename = path.basename(__filename);
 const dbConfig = require("../config/default.json");
 const { database, user, password, ...dbConfiguration } = dbConfig.database;
+const { createNamespace } = require("cls-hooked");
+const cls = createNamespace("ns_movie");
+Sequelize.useCLS(cls);
 
 const sequelize = new Sequelize(database, user, password, {
   logging: false,

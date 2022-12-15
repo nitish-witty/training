@@ -10,7 +10,7 @@ app.use(route);
 
 model.sequelize
   // .sync({alter: true})
-  // .sync({force: true})
+  // .sync({ force: true })
   .authenticate()
   .then(() => {
     console.log("Starting server on 3000");

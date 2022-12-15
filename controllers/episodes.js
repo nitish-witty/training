@@ -1,13 +1,16 @@
 let episodes = require("router")();
 const client = require("../connection");
+const { getAllEpisodes } = require("../services/episodes");
 
 const getEpisodes = async (req, res, next) => {
   try {
-    let episodes = (
-      await client.query(
-        'SELECT id, name, active, duration, launched_at FROM app."episodes" order by id'
-      )
-    ).rows;
+    // let episodes = (
+    //   await client.query(
+    //     'SELECT id, name, active, duration, launched_at FROM app."episodes" order by id'
+    //   )
+    // ).rows;
+
+    let episodes = await getAllEpisodes();
 
     if (episodes.length == 0) {
       throw "episodes is unavailable";
