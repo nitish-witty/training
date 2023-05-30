@@ -1,13 +1,6 @@
 let movie = require("router")();
 const client = require("../connection");
 
-// let arr = [
-//   { id: 11, movieName: "YJHD", genre: "romantic", rating: 4, liked: "true" },
-//   { id: 22, movieName: "ZNMD", genre: "drama", rating: 5, liked: "true" },
-//   { id: 33, movieName: "Shiva", genre: "fantasy", rating: 3, liked: "false" },
-//   { id: 44, movieName: "Hulk", genre: "action", rating: 3, liked: "false" },
-//   { id: 55, movieName: "Thor", genre: "adventure", rating: 5, liked: "true" }
-// ];
 const getMovies = async (req, res, next) => {
   try {
     let movie = (

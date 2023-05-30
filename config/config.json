@@ -1,8 +1,16 @@
 {
-    "database":{
+    "test":{
+      "database": "movie-test",
+      "user": "postgres",
+      "password": "postgres",
+      "host": "localhost",
+      "port": 5432,
+      "dialect": "postgres"
+    },
+    "development":{
       "database": "movie",
       "user": "postgres",
-      "password": "root",
+      "password": "postgres",
       "host": "localhost",
       "port": 5432,
       "dialect": "postgres"

@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const dbConfig = require("../config/default.json");
+const dbConfig = require("../config/config.json");
 
 const createToken = ({ id, email }) => {
   return jwt.sign(
